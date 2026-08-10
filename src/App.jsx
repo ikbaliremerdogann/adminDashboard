@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Sidebar from "./components/layout/Sidebar";
 import Header from "./Header.jsx";
 import Dashboard from './components/layout/Dashboard.jsx';
+import UsersPage from './components/layout/UsersPage.jsx';
 
 function App() {
   
@@ -76,7 +78,10 @@ function App() {
 
           <main className="flex-1 overflow-y-auto bg-transparent">
             <div className="p-6 space-y-6">
-              {currentPage === "dashboard" && <Dashboard />}
+              <AnimatePresence mode="wait">
+                {currentPage === "dashboard" && <Dashboard key="dashboard" />}
+                {currentPage === "users" && <UsersPage key="users" />}
+              </AnimatePresence>
             </div>
           </main>
         </div>
